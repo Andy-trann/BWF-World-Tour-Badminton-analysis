@@ -4,29 +4,31 @@
 -- =============================================================
 
 -- Combine MS and WS into one unified table for dashboard use
-SELECT 'MS' AS discipline,
-       tournament_type,
-       player,
-       country,
-       total_matches,
-       win_rate,
-       avg_point_gap
-FROM ms_final
+-- Added a numeric tier_order column to allow correct chronological sorting of tournament tiers in Power BI visuals
 
-UNION ALL
+CREATE TABLE combined_discipline_final AS
 
-SELECT 'WS' AS discipline,
-       tournament_type,
-       player,
-       country,
-       total_matches,
-       win_rate,
-       avg_point_gap
-FROM ws_final;
+WITH combined_discipline AS (
+       SELECT 'MS' AS discipline,
+              tournament_type,
+              player,
+              country,
+              total_matches,
+              win_rate,
+              avg_point_gap
+       FROM ms_final
 
+       UNION ALL
 
--- Add a numeric tier_order column to allow correct chronological
--- sorting of tournament tiers in Power BI visuals
+       SELECT 'WS' AS discipline,
+              tournament_type,
+              player,
+              country,
+              total_matches,
+              win_rate,
+              avg_point_gap
+       FROM ws_final
+)
 SELECT CASE tournament_type
            WHEN 'BWF Tour Super 100' THEN 1
            WHEN 'HSBC BWF World Tour Super 300' THEN 2
@@ -43,3 +45,5 @@ SELECT CASE tournament_type
        win_rate,
        avg_point_gap
 FROM combined_discipline;
+
+
