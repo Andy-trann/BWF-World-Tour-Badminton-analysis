@@ -59,7 +59,7 @@ BWF World Tour match data (April 2018 – March 2021), sourced from Kaggle:
 - **Removed anomalies**: Filtered out players with 2 or fewer matches and a 100% win rate, as these reflect incomplete match histories. 
 
 ## Dashboard
-*<img width="1277" height="717" alt="image" src="https://github.com/user-attachments/assets/91486a06-7cf2-42b4-aacf-ccece5b54c21" />*
+*![Dashboard](Dashboard.png)*
 
 ## What I'd Explore Next
 
